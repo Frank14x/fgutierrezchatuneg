@@ -19,7 +19,7 @@ showChat.addEventListener("click", () => {
   document.querySelector(".header__back").style.display = "block";
 });
 
-const user = prompt("Enter your name");
+const user = prompt("Cual es tu nombre.");
 
 var peer = new Peer(undefined, {
   path: "/peerjs",
@@ -91,6 +91,7 @@ text.addEventListener("keydown", (e) => {
 const inviteButton = document.querySelector("#inviteButton");
 const muteButton = document.querySelector("#muteButton");
 const stopVideo = document.querySelector("#stopVideo");
+
 muteButton.addEventListener("click", () => {
   const enabled = myVideoStream.getAudioTracks()[0].enabled;
   if (enabled) {
@@ -123,18 +124,20 @@ stopVideo.addEventListener("click", () => {
 
 inviteButton.addEventListener("click", (e) => {
   prompt(
-    "Copy this link and send it to people you want to meet with",
+    "Copia el link para que otros puedan entrar a la reunion",
     window.location.href
   );
 });
 
 socket.on("createMessage", (message, userName) => {
-  messages.innerHTML =
-    messages.innerHTML +
+    messages.innerHTML =
+      messages.innerHTML +
+
     `<div class="message">
-        <b><i class="far fa-user-circle"></i> <span> ${
-          userName === user ? "me" : userName
-        }</span> </b>
+        <b>
+        <i class="far fa-user-circle"></i>
+        <span> ${userName === user ? "yo" : userName} </span>
+        </b>
         <span>${message}</span>
     </div>`;
 });
